@@ -22,3 +22,16 @@ class BaseModel:
         save:       updates updated_at with current datetime
         to_dict:    returns dictionary of key-value pairs
     """
+    def __init__(self, *args, **kwargs):
+        """
+        Method to initialize instance
+
+        Attributes:
+            *args:      unused?
+            **kwargs:   key-value pairs
+
+        Returns:
+            None
+        """
+
+        
