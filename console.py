@@ -36,12 +36,12 @@ class HBNBCommand(cmd.Cmd):
         "Review": Review
     }
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initializes HBNBCommand class
         """
-        super().__init__()
-        self.storage = models.engine.file_storage.FileStorage()
+        super().__init__(*args, **kwargs)
+        self.storage = models.storage
 
     def do_quit(self, line):
         """
@@ -185,7 +185,6 @@ class HBNBCommand(cmd.Cmd):
     def help_update(self):
         print('Updates an instance based on the class name and id \
         by adding or updtting attribute and save the changes')
-
 
 
 if __name__ == '__main__':
