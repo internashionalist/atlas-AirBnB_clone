@@ -65,7 +65,7 @@ class TestFileStorage(unittest.TestCase):
         self.storage.save()
         self.storage._FileStorage__objects = {}
         self.storage.reload()
-        self.assertIsInstance(self.storage.all(), dict)
+        self.assertTrue(isinstance(self.storage.all(), dict))
 
 if __name__ == "__main__":
     unittest.main()
