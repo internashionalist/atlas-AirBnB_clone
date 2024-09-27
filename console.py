@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Handle's empty input + \n
+        Handles empty input + \n
         """
 
     def help_quit(self):
@@ -70,14 +70,14 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: create <class_name>
         """
-        if args == "":
+        if args == "":  # if no args
             print("** class name missing **")
-        elif args not in self.__classes:
+        elif args not in self.__classes:  # if class doesn't exist
             print("** class doesn't exist **")
-        else:
+        else:  # otherwise, create new instance
             new_instance = self.__classes[args]()
-            new_instance.save()
-            print(new_instance.id)
+            new_instance.save()  # save new instance
+            print(new_instance.id)  # print new instance id
 
     def do_show(self, args):
         """
@@ -85,23 +85,23 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: show <class_name> <id>
         """
-        args = args.split()
-        if len(args) == 0:
+        args = args.split()  # split args
+        if len(args) == 0:  # if no args
             print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name not in self.__classes:
+        class_name = args[0]  # get class name
+        if class_name not in self.__classes:  # if class doesn't exist
             print("** class doesn't exist **")
             return
-        if len(args) == 1:
+        if len(args) == 1:  # if no id
             print("** instance id missing **")
             return
-        instance_id = args[1]
-        key = "{}.{}".format(class_name, instance_id)
-        if key not in self.storage.all():
+        instance_id = args[1]  # get instance id
+        key = "{}.{}".format(class_name, instance_id)  # create key
+        if key not in self.storage.all():  # if key doesn't exist
             print("** no instance found **")
             return
-        else:
+        else:  # otherwise, print instance
             print(self.storage.all()[key])
 
 if __name__ == '__main__':
