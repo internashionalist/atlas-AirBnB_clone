@@ -9,8 +9,17 @@ class BaseModelTests(unittest.TestCase):
         model.save()
         actual_result = model.updated_at
         self.assertNotEqual(actual_result, old_update)
-
-
+    def testToDict(self):
+        model_to_dict = BaseModel().to_dict()
+        self.assertEqual(len(model_to_dict), 4)
+    def testStr(self):
+        model = BaseModel()
+        model.id = '1'  # mock id for testing
+        model.created_at = '2024'
+        model.updated_at = '2024'
+        actual_result = str(model)
+        expected_result = "[BaseModel] (1) {'id': '1', 'created_at': '2024', 'updated_at': '2024'}"
+        self.assertEqual(actual_result, expected_result)
 
 # my_model = BaseModel()
 # my_model.name = "My First Model"
