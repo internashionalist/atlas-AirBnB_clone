@@ -3,7 +3,7 @@
 BaseModel class module for AirBnB clone
 """
 
-#import models
+import models
 import uuid
 from datetime import datetime
 
@@ -61,7 +61,8 @@ class BaseModel:
         """
         return '[{}] ({}) {}'.format(
             self.__class__.__name__, self.id, self.__dict__)
-        # instructions say PRINT, but isn't __str__ supposed to return a string?
+        # instructions say PRINT, but isn't __str__ 
+        # supposed to return a string?
 
     def save(self):
         """
@@ -81,8 +82,8 @@ class BaseModel:
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
 
-# my_model = BaseModel(id=str(uuid.uuid4()), 
-# created_at=datetime.now().isoformat(), 
+# my_model = BaseModel(id=str(uuid.uuid4()),
+# created_at=datetime.now().isoformat(),
 # updated_at=datetime.now().isoformat())
 # print(my_model)
 
@@ -95,4 +96,6 @@ class BaseModel:
 # print(my_model_json)
 # print("JSON of my_model:")
 # for key in my_model_json.keys():
-#     print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+#     print("\t{}: ({}) - {}".format(key,
+#       type(my_model_json[key]),
+#       my_model_json[key]))
