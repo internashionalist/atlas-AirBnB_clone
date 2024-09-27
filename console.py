@@ -41,3 +41,29 @@ class HBNBCommand(cmd.Cmd):
         super().__init__()
         self.storage = models.engine.file_storage.FileStorage()
 
+    def do_quit(self, line):
+        """
+        Exits the Program
+        """
+        return True
+
+    def do_EOF(self, line):
+        """
+        Exits the Program
+        """
+        return True
+
+    def emptyline(self):
+        """
+        Handle's empty input + \n
+        """
+
+    def help_quit(self):
+        print("Exits the program.")
+
+    def help_EOF(self):
+        print("Exits the program")
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
+
