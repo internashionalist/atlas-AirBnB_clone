@@ -22,7 +22,7 @@ class BaseModel:
         save:       updates updated_at with current datetime
         to_dict:    returns dictionary of key-value pairs
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Method to initialize instance
 
@@ -34,9 +34,24 @@ class BaseModel:
         Returns:
             None
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if not kwargs:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+        else:
+            for key, value in kwargs.items():
+                if key == 'id':
+                    self.id = kwargs.get('id')
+                elif key == 'created_at':
+                    created_text = kwargs.get('created_at')
+                    formated_text = datetime.strptime(created_text, '%Y-%m-%dT%H:%M:%S.%f')
+                    self.created_at = formated_text
+                elif key == 'updated_at':
+                    updated_text = kwargs.get('updated_at')
+                    formated_text = datetime.strptime(updated_text, '%Y-%m-%dT%H:%M:%S.%f')
+                    self.updated_at = formated_text
+                else:
+                    setattr(self, key, value)
 
     def __str__(self):
         """Method to print string of instance"""
@@ -55,11 +70,8 @@ class BaseModel:
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
 
-# my_model = BaseModel()
-# my_model.id = '1'
-# my_model.created_at = '2024'
-# my_model.updated_at = '2024'
-# print(str(my_model))
+# my_model = BaseModel(id=str(uuid.uuid4()), created_at=datetime.now().isoformat(), updated_at=datetime.now().isoformat())
+# print(my_model)
 
 # my_model.name = "My First Model"
 # my_model.my_number = 89
