@@ -66,7 +66,7 @@ class FileStorage:
         obj_dict = {}  # dictionary to store objects
         for key, value in self.__objects.items():  # iterate through __objects
             obj_dict[key] = value.to_dict()  # add object to dictionary
-        with open(self.__file_path, "w", encoding="utf-8") as file:  # open file
+        with open(self.__file_path, "w", encoding="utf-8") as file:  # open
             json.dump(obj_dict, file)  # write to file
 
     def reload(self):
@@ -91,6 +91,6 @@ class FileStorage:
             }  # dictionary of classes
             for key, value in obj_dict.items():  # iterate through obj_dict
                 class_name = value["__class__"]  # get class name
-                self.__objects[key] = classes[class_name](**value)  # create object
+                self.__objects[key] = classes[class_name](**value)  # create
         except FileNotFoundError:  # if file not found
             pass  # do nothing
