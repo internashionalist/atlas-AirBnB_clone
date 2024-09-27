@@ -79,4 +79,17 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as file:  # open file
                 obj_dict = json.load(file)  # load file
-            
+            classes = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Place": Place,
+                "Amenity": Amenity,
+                "Review": Review
+            }  # dictionary of classes
+            for key, value in obj_dict.items():  # iterate through obj_dict
+                class_name = value["__class__"]  # get class name
+                self.__objects[key] = classes[class_name](**value)  # create object
+        except FileNotFoundError:  # if file not found
+            pass  # do nothing
