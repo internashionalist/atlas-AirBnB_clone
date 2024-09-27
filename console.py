@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
         Initializes HBNBCommand class
         """
         super().__init__()
-        self.storage = models.engine.file_storage.FileStorage()
+        self.storage = models.storage
 
     def do_quit(self, line):
         """
@@ -63,6 +63,21 @@ class HBNBCommand(cmd.Cmd):
 
     def help_EOF(self):
         print("Exits the program")
+
+    def do_create(self, args):
+        """
+        Creates a new instance of specified class
+
+        Usage: create <class_name>
+        """
+        if args == "":
+            print("** class name missing **")
+        elif args not in self.__classes:
+            print("** class doesn't exist **")
+        else:
+            new_instance = self.__classes[args]()
+            new_instance.save()
+            print(new_instance.id)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
