@@ -61,8 +61,11 @@ class TestFileStorage(unittest.TestCase):
         """
         Test for reload method
         """
+        
         self.storage.save()
         self.storage._FileStorage__objects = {}
+        self.storage.reload()
+        self.assertTrue(isinstance(self.storage.all(), dict))
 
 if __name__ == "__main__":
     unittest.main()
