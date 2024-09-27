@@ -2,6 +2,7 @@
 """
 Unittest for Amenity class
 """
+
 import unittest
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -13,14 +14,14 @@ class TestAmenity(unittest.TestCase):
     """
     def setUp(self):
         """
-        Set Up for Amenity class
+        SetUp for Amenity class
         """
         self.amenity = Amenity()
         amenity_dict = self.amenity.to_dict()
 
     def tearDown(self):
         """
-        Tear down for Amenity class
+        TearDown for Amenity class
         """
         del self.amenity
 
