@@ -14,14 +14,14 @@ class TestCity(unittest.TestCase):
     """
     def setUp(self):
         """
-        Set Up for City class
+        SetUp for City class
         """
         self.city = City()
         city_dict = self.city.to_dict()
 
     def tearDown(self):
         """
-        Tear Down for City class
+        TearDown for City class
         """
         del self.city
 
