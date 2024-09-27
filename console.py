@@ -69,11 +69,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-        Creates and saves a new BaseModel instance and prints the id.
+        Creates and saves a new instance of a class and prints the id.
+
+        Usage: create <class_name>
         """
         if line.strip():
-            if line == 'BaseModel':
-                new_model = BaseModel()
+            if line == self.__classes:
+                new_model = self.__classes[line]()
                 storage.new(new_model)
                 storage.save()
                 print(new_model.id)
@@ -84,13 +86,16 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-        Shows a specific BaseModel object based on input.
+        Shows a specific object based on class name and id.
+
+        Usage: show <class_name> <id>
         """
         if line.strip():
             line_splits = line.split()
-            if line_splits[0] == 'BaseModel':
+            if line_splits[0] == self.__classes:
                 if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    storage_id = f"{line_splits[0]}.{line_splits[1]}"
+                    storage = storage.all()
                     if storage_id in storage:
                         print(storage[storage_id])
                     else:
@@ -104,34 +109,42 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-        Deletes a specific BaseModel object stored in storage.
+        Deletes a specific object based on class name and id.
+
+        Usage: destroy <class_name> <id>
         """
         if line.strip():
             line_splits = line.split()
-            if line_splits[0] == 'BaseModel':
+            if line_splits[0] == self.__classes:
                 if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
-                    try:
-                        del storage[storage_id]
-                    except KeyError:
-                        print('** no instance found **')
+                    storage_id = f"{line_splits[0]}.{line_splits[1]}"
+                    storage = storage.all()
+                    if storage_id in storage:
+                        try:
+                            del storage[storage_id]
+                            storage.save()
+                        except KeyError:
+                            print('** no instance found **')
+                    else:
+                        print('** instance id missing **')
                 else:
-                    print('** instance id missing **')
+                    print("** class doesn't exist **")
             else:
-                print("** class doesn't exist **")
-        else:
-            print('** class name missing **')
+                print('** class name missing **')
 
     def do_all(self, line):
         """
         Prints string representation of all instances in storage
         or of all of a specific class
+
+        Usage: all <class_name>
         """
+        storage = storage.all()
         if line.strip():
-            if line == 'BaseModel':
+            if line == self.__classes:
                 list_models = []
                 for key, value in storage.items():
-                    if key.split('.')[0] == 'BaseModel':
+                    if key.split('.')[0] == self.__classes:
                         list_models.append(value)
                 print(list_models)
             else:
