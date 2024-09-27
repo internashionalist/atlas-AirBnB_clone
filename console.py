@@ -91,6 +91,7 @@ class HBNBCommand(cmd.Cmd):
             if line_splits[0] == 'BaseModel':
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    storage = models.storage.all()
                     if storage_id in storage:
                         print(storage[storage_id])
                     else:
