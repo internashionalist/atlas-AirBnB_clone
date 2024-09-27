@@ -14,6 +14,8 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 from datetime import datetime
+# from models.engine.file_storage import FileStorage
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -55,8 +57,9 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Handles empty input + \n
+        Handle's empty input
         """
+        pass
 
     def help_quit(self):
         print("Exits the program.")
@@ -64,71 +67,125 @@ class HBNBCommand(cmd.Cmd):
     def help_EOF(self):
         print("Exits the program")
 
-    def do_create(self, args):
+    def do_create(self, line):
         """
-        Creates a new instance of specified class
+        Creates and saves a new BaseModel instance and prints the id.
+        """
+        if line.strip():
+            if line == 'BaseModel':
+                new_model = BaseModel()
+                storage.new(new_model)
+                storage.save()
+                print(new_model.id)
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing ")
 
-        Usage: create <class_name>
+    def do_show(self, line):
         """
-        if args == "":  # if no args
+        Shows a specific BaseModel object based on input.
+        """
+        if line.strip():
+            line_splits = line.split()
+            if line_splits[0] == 'BaseModel':
+                if len(line_splits) > 1:
+                    storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    if storage_id in storage:
+                        print(storage[storage_id])
+                    else:
+                        print('** no instance foun d')
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** Class doensn't exists **")
+        else:
+            print('** class name is missing **')
+
+    def do_destroy(self, line):
+        """
+        Deletes a specific BaseModel object stored in storage.
+        """
+        if line.strip():
+            line_splits = line.split()
+            if line_splits[0] == 'BaseModel':
+                if len(line_splits) > 1:
+                    storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    try:
+                        del storage[storage_id]
+                    except KeyError:
+                        print('** no instance found **')
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** class doesn't exist **")
+        else:
+            print('** class name missing **')
+
+    def do_all(self, line):
+        """
+        Prints string representation of all instances in storage
+        or of all of a specific class
+        """
+        if line.strip():
+            if line == 'BaseModel':
+                list_models = []
+                for key, value in storage.items():
+                    if key.split('.')[0] == 'BaseModel':
+                        list_models.append(value)
+                print(list_models)
+            else:
+                print("** class doesn't exist **")
+        else:
+            list_models = []
+            for key, value in storage.items():
+                list_models.append(value)
+            print(list_models)
+
+    def do_update(self, line):  # might re-write with regex to handle double quotes
+        """
+        Updates an instance based on the class name and id
+        by adding or updtting attribute and save the changes
+        """
+        if line.strip():
+            line_splits = line.split()
+            if line_splits[0] == 'BaseModel':
+                if len(line_splits) > 1:
+                    storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    if storage_id in storage:
+                        if len(line_splits) > 2:
+                            if len(line_splits) > 3:
+                                setattr(storage[storage_id], line_splits[2], line_splits[3])
+                            else:
+                                print('** value missing **')
+                        else:
+                            print('** attribute name missing **')
+                    else:
+                        print('** no instance found **')
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** class doesn't exist **")
+        else:
             print("** class name missing **")
-        elif args not in self.__classes:  # if class doesn't exist
-            print("** class doesn't exist **")
-        else:  # otherwise, create new instance
-            new_instance = self.__classes[args]()
-            new_instance.save()  # save new instance
-            print(new_instance.id)  # print new instance id
 
-    def do_show(self, args):
-        """
-        Prints string representation of instance
+    def help_create(self):
+        print('Creates and saves a new BaseModel instance and prints the id.')
 
-        Usage: show <class_name> <id>
-        """
-        args = args.split()  # split args
-        if len(args) == 0:  # if no args
-            print("** class name missing **")
-            return
-        class_name = args[0]  # get class name
-        if class_name not in self.__classes:  # if class doesn't exist
-            print("** class doesn't exist **")
-            return
-        if len(args) == 1:  # if no id
-            print("** instance id missing **")
-            return
-        instance_id = args[1]  # get instance id
-        key = "{}.{}".format(class_name, instance_id)  # create key
-        if key not in self.storage.all():  # if key doesn't exist
-            print("** no instance found **")
-            return
-        else:  # otherwise, print instance
-            print(self.storage.all()[key])
+    def help_show(self):
+        print('Shows a specific BaseModel object based on input.')
 
-    def do_destroy(self, args):
-        """
-        Deletes an instance based on class name and id inputs
+    def help_destroy(self):
+        print('Deletes a specific BaseModel object stored in storage.')
 
-        Usage: destroy <class_name> <id>
-        """
-        args = args.split()  # split input into args
-        if len(args) == 0:  # if no args
-            print("** class name missing **")
-            return
-        class_name = args[0]  # get class name
-        if class_name not in self.__classes:  # if class doesn't exist
-            print("** class doesn't exist **")
-            return
-        if len(args) == 1:  # if no id
-            print("** instance id missing **")
-            return
-        instance_id = args[1]  # get instance id
-        key = "{}.{}".format(class_name, instance_id)  # create key
-        if key not in self.storage.all():  # if key doesn't exist
-            print("** no instance found **")
-            return
-        else:  # otherwise, delete instance
-            del self.storage.all()[key]
-            self.storage.save()  # save changes
+    def help_all(self):
+        print('Prints string representation of all instances in storage or \
+              of all of a specific class')
+
+    def help_update(self):
+        print('Updates an instance based on the class name and id \
+        by adding or updtting attribute and save the changes')
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
