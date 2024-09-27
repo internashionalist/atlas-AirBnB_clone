@@ -63,3 +63,6 @@ class TestFileStorage(unittest.TestCase):
         """
         self.storage.save()
         self.storage._FileStorage__objects = {}
+
+if __name__ == "__main__":
+    unittest.main()
