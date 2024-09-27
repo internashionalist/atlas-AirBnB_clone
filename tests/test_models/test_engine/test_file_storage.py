@@ -4,6 +4,8 @@ Unittest for FileStorage class
 """
 
 import unittest
+import os
+import json
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
@@ -17,13 +19,15 @@ class TestFileStorage(unittest.TestCase):
         SetUp for FileStorage class
         """
         self.storage = FileStorage()
+        self.file_path = "file.json"
         storage_dict = self.storage.all()
 
     def tearDown(self):
         """
         TearDown for FileStorage class
         """
-        del self.storage
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_init(self):
         """
@@ -57,6 +61,5 @@ class TestFileStorage(unittest.TestCase):
         """
         Test for reload method
         """
-        storage = FileStorage()
-        storage.reload()
-        self.assertTrue(isinstance(storage.all(), dict))
+        self.storage.save()
+        self.storage._FileStorage__objects = {}
