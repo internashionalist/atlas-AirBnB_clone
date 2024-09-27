@@ -12,11 +12,6 @@ class BaseModel:
     """
     Defines attributes and methods for subsequent classes
 
-    Attributes:
-        id (str):               unique id for each instance
-        created_at (datetime):  instance creation datetime
-        updated_at (datetime):  instance update datetime
-
     Methods:
         __str__:    returns string representation of instance
         save:       updates updated_at with current datetime
