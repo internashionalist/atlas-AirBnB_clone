@@ -1,3 +1,5 @@
+![AirBnB](https://github.com/internashionalist/atlas-AirBnB_clone/blob/main/AIRBNB%20CLONE.png)
+
 # AirBnB Console
 
 
