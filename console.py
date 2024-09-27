@@ -24,6 +24,16 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     storage = None
 
+    __classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Place": Place,
+        "Amenity": Amenity,
+        "Review": Review
+    }
+
     def __init__(self):
         """
         Initializes HBNBCommand class
