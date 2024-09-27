@@ -56,6 +56,11 @@ class BaseModel:
         return new_dict
 
 # my_model = BaseModel()
+# my_model.id = '1'
+# my_model.created_at = '2024'
+# my_model.updated_at = '2024'
+# print(str(my_model))
+
 # my_model.name = "My First Model"
 # my_model.my_number = 89
 # print(my_model)
