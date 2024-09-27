@@ -119,3 +119,6 @@ class TestPlace(unittest.TestCase):
         place = Place()
         place.amenity_ids = ["wifi", "pool", "fireplace"]
         self.assertEqual(place.amenity_ids, ["wifi", "pool", "fireplace"])
+
+if __name__ == '__main__':
+    unittest.main()

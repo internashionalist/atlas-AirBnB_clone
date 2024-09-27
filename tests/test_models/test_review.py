@@ -54,3 +54,6 @@ class TestReview(unittest.TestCase):
         review = Review()
         review.text = "This place is a mansion!"
         self.assertEqual(review.text, "This place is a mansion!")
+
+if __name__ == '__main__':
+    unittest.main()

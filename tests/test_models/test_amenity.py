@@ -38,3 +38,6 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         amenity.name = "Fireplace"
         self.assertEqual(amenity.name, "Fireplace")
+
+if __name__ == '__main__':
+    unittest.main()

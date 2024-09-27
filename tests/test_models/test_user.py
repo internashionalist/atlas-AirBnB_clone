@@ -65,3 +65,6 @@ class TestUser(unittest.TestCase):
         user = User()
         user.last_name = "Flash"
         self.assertEqual(user.last_name, "Flash")
+
+if __name__ == '__main__':
+    unittest.main()
