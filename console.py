@@ -113,7 +113,7 @@ class HBNBCommand(cmd.Cmd):
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
                     try:
-                        del storage[storage_id]
+                        del storage.all()[storage_id]
                     except KeyError:
                         print('** no instance found **')
                 else:
