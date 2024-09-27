@@ -61,7 +61,7 @@ class BaseModel:
         """
         return '[{}] ({}) {}'.format(
             self.__class__.__name__, self.id, self.__dict__)
-        # instructions say PRINT, but isn't __str__ 
+        # instructions say PRINT, but isn't __str__
         # supposed to return a string?
 
     def save(self):
