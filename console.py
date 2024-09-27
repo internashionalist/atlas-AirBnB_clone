@@ -34,11 +34,11 @@ class HBNBCommand(cmd.Cmd):
         "Review": Review
     }
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Initializes HBNBCommand class
         """
-        super().__init__()
+        super().__init__(*args, **kwargs)
         self.storage = models.storage
 
     def do_quit(self, line):
