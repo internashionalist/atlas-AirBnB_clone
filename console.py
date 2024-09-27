@@ -94,11 +94,11 @@ class HBNBCommand(cmd.Cmd):
                     if storage_id in storage:
                         print(storage[storage_id])
                     else:
-                        print('** no instance foun d')
+                        print('** no instance found **')
                 else:
                     print('** instance id missing **')
             else:
-                print("** Class doensn't exists **")
+                print("** class doesn't exist **")
         else:
             print('** class name is missing **')
 
