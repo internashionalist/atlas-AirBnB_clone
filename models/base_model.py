@@ -22,16 +22,18 @@ class BaseModel:
         save:       updates updated_at with current datetime
         to_dict:    returns dictionary of key-value pairs
     """
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         """
         Method to initialize instance
 
         Attributes:
-            *args:      unused?
-            **kwargs:   key-value pairs
+            id (str):               unique id for each instance (assigned by uuid)
+            created_at (datetime):  instance creation datetime
+            updated_at (datetime):  instance update datetime
 
         Returns:
             None
         """
-
-        
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
