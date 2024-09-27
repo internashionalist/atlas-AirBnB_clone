@@ -50,7 +50,7 @@ class BaseModel:
                     updated_text = kwargs.get('updated_at')
                     formated_text = datetime.strptime(updated_text, '%Y-%m-%dT%H:%M:%S.%f')
                     self.updated_at = formated_text
-                else:
+                elif key != '__class__':
                     setattr(self, key, value)
 
     def __str__(self):
