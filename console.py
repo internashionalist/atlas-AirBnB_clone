@@ -106,21 +106,22 @@ class HBNBCommand(cmd.Cmd):
         """
         Deletes a specific BaseModel object stored in storage.
         """
-        if line.strip():
-            line_splits = line.split()
-            if line_splits[0] == 'BaseModel':
-                if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
-                    try:
-                        storage.all().pop(storage_id)
-                    except KeyError:
-                        print('** no instance found **')
-                else:
-                    print('** instance id missing **')
-            else:
-                print("** class doesn't exist **")
-        else:
+        if not line.strip():
             print('** class name missing **')
+            return
+        line_splits = line.split()
+        if line_splits[0] not  in self.__classes:
+            print("** class doesn't exist **")
+            return
+        if len(line_splits) < 2:
+            print('** instance id missing **')
+            return
+        storage_id = f"{line_splits[0]}.{line_splits[1]}"
+        if storage_id not in storage.all():
+            print('** no instance found **')
+            return
+        del storage.all()[storage_id]
+        storage.save()
 
     def do_all(self, line):
         """
