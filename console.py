@@ -15,7 +15,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 from datetime import datetime
-# from models.engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 from models import storage
 
 
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Handle's empty input
+        Handles empty input
         """
         pass
 
@@ -70,7 +70,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-        Creates and saves a new BaseModel instance and prints the id.
+        Creates and saves a new BaseModel instance and prints the id
+
+        Usage: create <class name>
         """
         if line.strip():
             if line == 'BaseModel':
@@ -85,7 +87,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-        Shows a specific BaseModel object based on input.
+        Shows a specific BaseModel object based on input
+
+        Usage: show <class name> <id>
         """
         if line.strip():
             line_splits = line.split()
@@ -101,32 +105,37 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
         else:
-            print('** class name is missing **')
+            print('** class name missing **')
 
     def do_destroy(self, line):
         """
-        Deletes a specific BaseModel object stored in storage.
+        Deletes a specific object based on input from storage
+
+        Usage: destroy <class name> <id>
         """
-        if line.strip():
-            line_splits = line.split()
-            if line_splits[0] == 'BaseModel':
-                if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
-                    try:
-                        storage.all().pop(storage_id)
-                    except KeyError:
-                        print('** no instance found **')
-                else:
-                    print('** instance id missing **')
-            else:
-                print("** class doesn't exist **")
-        else:
+        if not line.strip():
             print('** class name missing **')
+            return
+        line_splits = line.split()
+        if line_splits[0] not  in self.__classes:
+            print("** class doesn't exist **")
+            return
+        if len(line_splits) < 2:
+            print('** instance id missing **')
+            return
+        storage_id = f"{line_splits[0]}.{line_splits[1]}"
+        if storage_id not in storage.all():
+            print('** no instance found **')
+            return
+        del storage.all()[storage_id]
+        storage.save()
 
     def do_all(self, line):
         """
         Prints string representation of all instances in storage
         or of all of a specific class
+
+        Usage: all <class name>
         """
         if line.strip():
             if line == 'BaseModel':
@@ -147,6 +156,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name and id
         by adding or updtting attribute and save the changes
+
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         if line.strip():
             line_splits = re.findall(r'\"(.*?)\"|(\S+)', line)
@@ -159,6 +170,7 @@ class HBNBCommand(cmd.Cmd):
                         if len(line_splits) > 2:
                             if len(line_splits) > 3:
                                 setattr(storage[storage_id], line_splits[2], line_splits[3])
+                                storage[storage_id].save()
                             else:
                                 print('** value missing **')
                         else:
