@@ -29,7 +29,7 @@ class FileStorage:
         reload(self):       deserializes JSON file to __objects
     """
 
-    file_path = "file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def __init__(self):
@@ -67,7 +67,7 @@ class FileStorage:
         obj_dict = {}  # dictionary to store objects
         for key, value in self.__objects.items():  # iterate through __objects
             obj_dict[key] = value.to_dict()  # add object to dictionary
-        with open(self.file_path, "w", encoding="utf-8") as file:  # open
+        with open(self.__file_path, "w", encoding="utf-8") as file:  # open
             json.dump(obj_dict, file)  # write to file
 
     def reload(self):
@@ -79,7 +79,7 @@ class FileStorage:
             obj_class (dict): dictionary of classes
         """
         try:
-            with open(self.file_path, "r") as file:  # open file
+            with open(self.__file_path, "r") as file:  # open file
                 obj_dict = json.load(file)  # load file
             classes = {
                 "BaseModel": BaseModel,
