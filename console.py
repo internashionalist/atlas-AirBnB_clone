@@ -156,29 +156,30 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
-        if line.strip():
-            line_splits = line.split()
-            if line_splits[0] == 'BaseModel':
-                if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
-                    storage = models.storage.all()
-                    if storage_id in storage:
-                        if len(line_splits) > 2:
-                            if len(line_splits) > 3:
-                                setattr(storage[storage_id], line_splits[2], line_splits[3])
-                                storage[storage_id].save()
-                            else:
-                                print('** value missing **')
-                        else:
-                            print('** attribute name missing **')
-                    else:
-                        print('** no instance found **')
-                else:
-                    print('** instance id missing **')
-            else:
-                print("** class doesn't exist **")
-        else:
-            print("** class name missing **")
+        if not line.strip():
+            print('** class name missing **')
+            return
+        line_splits = line.split()
+        if line_splits[0] not in self.__classes:
+            print("** class doesn't exist **")
+            return
+        if len(line_splits) < 2:
+            print('** instance id missing **')
+            return
+        storage_id = f"{line_splits[0]}.{line_splits[1]}"
+        if storage_id not in storage.all():
+            print('** no instance found **')
+            return
+        if len(line_splits) < 3:
+            print('** attribute name missing **')
+            return
+        if len(line_splits) < 4:
+            print('** value missing **')
+            return
+        if len(line_splits) > 4:
+            line_splits[3] = ' '.join(line_splits[3:])
+        setattr(storage.all()[storage_id], line_splits[2], line_splits[3])
+        storage.save()
 
     def help_create(self):
         print('Creates and saves a new BaseModel instance and prints the id.')
