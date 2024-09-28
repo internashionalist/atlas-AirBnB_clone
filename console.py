@@ -84,7 +84,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-        Shows a specific BaseModel object based on input.
+        Shows a specific BaseModel object based on input
+
+        Usage: show <class name> <id>
         """
         if line.strip():
             line_splits = line.split()
@@ -104,7 +106,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-        Deletes a specific BaseModel object stored in storage.
+        Deletes a specific object based on input from storage
+
+        Usage: destroy <class name> <id>
         """
         if not line.strip():
             print('** class name missing **')
@@ -127,6 +131,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints string representation of all instances in storage
         or of all of a specific class
+
+        Usage: all <class name>
         """
         if line.strip():
             if line == 'BaseModel':
@@ -147,6 +153,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name and id
         by adding or updtting attribute and save the changes
+
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         if line.strip():
             line_splits = line.split()
