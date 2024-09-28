@@ -94,11 +94,11 @@ class HBNBCommand(cmd.Cmd):
                     if storage_id in storage.all():
                         print(storage.all()[storage_id])
                     else:
-                        print('** no instance foun d')
+                        print('** no instance found **')
                 else:
                     print('** instance id missing **')
             else:
-                print("** Class doensn't exists **")
+                print("** class doesn't exist **")
         else:
             print('** class name is missing **')
 
@@ -152,6 +152,7 @@ class HBNBCommand(cmd.Cmd):
             if line_splits[0] == 'BaseModel':
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    storage = models.storage.all()
                     if storage_id in storage:
                         if len(line_splits) > 2:
                             if len(line_splits) > 3:
