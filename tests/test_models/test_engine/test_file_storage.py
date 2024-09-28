@@ -31,6 +31,13 @@ class TestFileStorage(unittest.TestCase):
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
 
+    def test_objects(self):
+        """
+        Test for __objects attribute
+        """
+        self.assertTrue(hasattr(self.storage, "_FileStorage__objects"))
+        self.assertTrue(isinstance(self.storage._FileStorage__objects, dict))
+
     def test_init(self):
         """
         Test for init method
