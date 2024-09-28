@@ -35,8 +35,7 @@ class TestFileStorage(unittest.TestCase):
         """
         Test for __objects attribute
         """
-        self.assertTrue(hasattr(self.storage, "_FileStorage__objects"))
-        self.assertTrue(isinstance(self.storage._FileStorage__objects, dict))
+        self.assertIsInstance(self.storage._FileStorage__objects, dict)
 
     def test_init(self):
         """
