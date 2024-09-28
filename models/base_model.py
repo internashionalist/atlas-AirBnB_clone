@@ -76,6 +76,8 @@ class BaseModel:
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
 
+
+
 # my_model = BaseModel(id=str(uuid.uuid4()),
 # created_at=datetime.now().isoformat(),
 # updated_at=datetime.now().isoformat())
