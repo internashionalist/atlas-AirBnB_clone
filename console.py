@@ -156,7 +156,8 @@ class HBNBCommand(cmd.Cmd):
                     if storage_id in storage:
                         if len(line_splits) > 2:
                             if len(line_splits) > 3:
-                                setattr(storage.all()[storage_id], line_splits[2], line_splits[3])
+                                setattr(storage[storage_id], line_splits[2], line_splits[3])
+                                storage[storage_id].save()
                             else:
                                 print('** value missing **')
                         else:
