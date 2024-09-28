@@ -91,9 +91,8 @@ class HBNBCommand(cmd.Cmd):
             if line_splits[0] == 'BaseModel':
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
-                    storage = models.storage.all()
-                    if storage_id in storage:
-                        print(storage[storage_id])
+                    if storage_id in storage.all():
+                        print(storage.all()[storage_id])
                     else:
                         print('** no instance found **')
                 else:
@@ -113,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
                     try:
-                        del storage.all()[storage_id]
+                        storage.all().pop(storage_id)
                     except KeyError:
                         print('** no instance found **')
                 else:
@@ -131,16 +130,16 @@ class HBNBCommand(cmd.Cmd):
         if line.strip():
             if line == 'BaseModel':
                 list_models = []
-                for key, value in storage.items():
+                for key, value in storage.all().items():
                     if key.split('.')[0] == 'BaseModel':
-                        list_models.append(value)
+                        list_models.append(str(value))
                 print(list_models)
             else:
                 print("** class doesn't exist **")
         else:
             list_models = []
-            for key, value in storage.items():
-                list_models.append(value)
+            for key, value in storage.all().items():
+                list_models.append(str(value))
             print(list_models)
 
     def do_update(self, line):  # might re-write with regex to handle double quotes
@@ -157,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
                     if storage_id in storage:
                         if len(line_splits) > 2:
                             if len(line_splits) > 3:
-                                setattr(storage[storage_id], line_splits[2], line_splits[3])
+                                setattr(storage.all()[storage_id], line_splits[2], line_splits[3])
                             else:
                                 print('** value missing **')
                         else:
