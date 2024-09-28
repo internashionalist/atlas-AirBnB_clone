@@ -47,5 +47,14 @@ class TestCity(unittest.TestCase):
         city.state_id = "OK"
         self.assertEqual(city.state_id, "OK")
 
+    def test_city_id(self):
+        """
+        Test for city_id input
+        """
+        city = City()
+        city.city_id = "Tulsa"
+        self.assertEqual(city.city_id, "Tulsa")
+
+
 if __name__ == '__main__':
     unittest.main()
