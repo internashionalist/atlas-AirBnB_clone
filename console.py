@@ -111,9 +111,10 @@ class HBNBCommand(cmd.Cmd):
             if line_splits[0] == 'BaseModel':
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
-                    try:
-                        storage.all().pop(storage_id)
-                    except KeyError:
+                    if storage_id in storage.all():
+                        del storage.all()[storage_id]
+                        storage.save()
+                    else:
                         print('** no instance found **')
                 else:
                     print('** instance id missing **')
