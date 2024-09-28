@@ -113,22 +113,23 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: destroy <class name> <id>
         """
-        if not line.strip():
+        if line.strip():
+            line_splits = re.findall(r'\"(.*?)\"|(\S+)', line)
+            line_splits = [elem for tup in line_splits for elem in tup if elem]
+            if line_splits[0] in self.__classes:
+                if len(line_splits) > 1:
+                    storage_id = f"{line_splits[0]}.{line_splits[1]}"
+                    if storage_id in storage.all():
+                        del storage.all()[storage_id]
+                        storage.save()
+                    else:
+                        print('** no instance found **')
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** class doesn't exist **")
+        else:
             print('** class name missing **')
-            return
-        line_splits = line.split()
-        if line_splits[0] not  in self.__classes:
-            print("** class doesn't exist **")
-            return
-        if len(line_splits) < 2:
-            print('** instance id missing **')
-            return
-        storage_id = f"{line_splits[0]}.{line_splits[1]}"
-        if storage_id not in storage.all():
-            print('** no instance found **')
-            return
-        del storage.all()[storage_id]
-        storage.save()
 
     def do_all(self, line):
         """
