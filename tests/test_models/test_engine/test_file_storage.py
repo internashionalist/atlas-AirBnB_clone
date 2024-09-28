@@ -31,6 +31,14 @@ class TestFileStorage(unittest.TestCase):
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
 
+    def test_objects(self):
+        """
+        Test for __objects attribute
+        """
+        self.storage.new(self.test_model)
+        self.assertIn(f"BaseModel.{self.test_model.id}",
+                      self.storage.all())
+
     def test_init(self):
         """
         Test for init method
