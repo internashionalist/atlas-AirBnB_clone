@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Handle's empty input
+        Handles empty input
         """
         pass
 
@@ -69,7 +69,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-        Creates and saves a new BaseModel instance and prints the id.
+        Creates and saves a new BaseModel instance and prints the id
+
+        Usage: create <class name>
         """
         if line.strip():
             if line == 'BaseModel':
@@ -102,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
         else:
-            print('** class name is missing **')
+            print('** class name missing **')
 
     def do_destroy(self, line):
         """
