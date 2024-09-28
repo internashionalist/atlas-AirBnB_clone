@@ -13,4 +13,6 @@ class State(BaseModel):
     Attributes:
         name (str):  state name
     """
-    name = ""
+    def __init__(self):
+        super().__init__()
+        self.name = ""

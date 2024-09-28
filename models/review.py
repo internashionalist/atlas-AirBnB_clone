@@ -15,6 +15,8 @@ class Review(BaseModel):
         user_id (str):    user id
         text (str):       review text
     """
-    place_id = ""
-    user_id = ""
-    text = ""
+    def __init__(self):
+        super().__init__()
+        self.place_id = ""
+        self.user_id = ""
+        self.text = ""
