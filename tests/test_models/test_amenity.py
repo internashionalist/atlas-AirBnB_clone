@@ -31,13 +31,21 @@ class TestAmenity(unittest.TestCase):
         """
         self.assertTrue(isinstance(self.amenity, BaseModel))
 
-    def test_name(self):
+    def test_amenity_name(self):
         """
         Test for name input
         """
         amenity = Amenity()
         amenity.name = "Fireplace"
         self.assertEqual(amenity.name, "Fireplace")
+
+    def test_amenity_id(self):
+        """
+        Test for amenity_id input
+        """
+        amenity = Amenity()
+        amenity.amenity_id = "123"
+        self.assertEqual(amenity.amenity_id, "123")
 
 if __name__ == '__main__':
     unittest.main()

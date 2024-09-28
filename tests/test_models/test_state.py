@@ -39,5 +39,13 @@ class TestState(unittest.TestCase):
         state.name = "Oklahoma"
         self.assertEqual(state.name, "Oklahoma")
 
+    def test_state_id(self):
+        """
+        Test for state_id input
+        """
+        state = State()
+        state.state_id = "OK"
+        self.assertEqual(state.state_id, "OK")
+
 if __name__ == '__main__':
     unittest.main()
