@@ -6,6 +6,7 @@ import cmd
 import json
 import models
 import models.engine
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -148,7 +149,8 @@ class HBNBCommand(cmd.Cmd):
         by adding or updtting attribute and save the changes
         """
         if line.strip():
-            line_splits = line.split()
+            line_splits = re.findall(r'\"(.*?)\"|(\S+)', line)
+            line_splits = [elem for tup in line_splits for elem in tup if elem]
             if line_splits[0] == 'BaseModel':
                 if len(line_splits) > 1:
                     storage_id = 'BaseModel.{}'.format(line_splits[1])
@@ -156,7 +158,7 @@ class HBNBCommand(cmd.Cmd):
                     if storage_id in storage:
                         if len(line_splits) > 2:
                             if len(line_splits) > 3:
-                                setattr(storage.all()[storage_id], line_splits[2], line_splits[3])
+                                setattr(storage[storage_id], line_splits[2], line_splits[3])
                             else:
                                 print('** value missing **')
                         else:
