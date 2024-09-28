@@ -37,6 +37,7 @@ class FileStorage:
         Initializes FileStorage class
         """
         self.__objects = {}
+        self.reload()
 
     def all(self):
         """
