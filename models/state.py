@@ -14,10 +14,11 @@ class State(BaseModel):
     Attributes:
         name (str):  state name
     """
-    def __init__(self, *args, **kwargs):
+    name = ""
+
+    def __init__(self, **kwargs):
         if not kwargs:
             super().__init__()
-            self.name = ""
         else:
             for key, value in kwargs.items():
                 if key == 'id':
