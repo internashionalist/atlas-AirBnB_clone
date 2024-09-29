@@ -17,18 +17,17 @@ class User(BaseModel):
         first_name (str): user first name
         last_name (str):  user last name
     """
-    def __init__(self, *args, **kwargs):
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
+
+    def __init__(self, **kwargs):
         if not kwargs:
             super().__init__()
-            self.email = ""
-            self.password = ""
-            self.first_name = ""
-            self.last_name = ""
         else:
             for key, value in kwargs.items():
-                if key == 'id':
-                    self.id = kwargs.get('id')
-                elif key == 'created_at':
+                if key == 'created_at':
                     created_text = kwargs.get('created_at')
                     formated_text = datetime.strptime(
                         created_text, '%Y-%m-%dT%H:%M:%S.%f')
@@ -40,4 +39,3 @@ class User(BaseModel):
                     self.updated_at = formated_text
                 elif key != '__class__':
                     setattr(self, key, value)
-

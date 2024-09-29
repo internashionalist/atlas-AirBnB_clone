@@ -14,16 +14,15 @@ class City(BaseModel):
         state_id (str):  state id
         name (str):      city name
     """
-    def __init__(self, *args, **kwargs):
+    state_id = ""
+    name = ""
+
+    def __init__(self, **kwargs):
         if not kwargs:
             super().__init__()
-            self.state_id = ""
-            self.name = ""
         else:
             for key, value in kwargs.items():
-                if key == 'id':
-                    self.id = kwargs.get('id')
-                elif key == 'created_at':
+                if key == 'created_at':
                     created_text = kwargs.get('created_at')
                     formated_text = datetime.strptime(
                         created_text, '%Y-%m-%dT%H:%M:%S.%f')
