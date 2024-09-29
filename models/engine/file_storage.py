@@ -93,6 +93,6 @@ class FileStorage:
             for key, value in obj_dict.items():  # iterate through obj_dict
                 class_name = value.get("__class__")  # get class name
                 if class_name in classes:
-                    self.__objects[key] = classes[class_name](**value)  # create
+                    self.__objects[key] = classes[class_name](**value)  # creat
         except FileNotFoundError:  # if file not found
             pass  # do nothing

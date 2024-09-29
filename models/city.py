@@ -6,6 +6,7 @@ City class module for AirBnB clone
 from models.base_model import BaseModel
 from datetime import datetime
 
+
 class City(BaseModel):
     """
     Beginning stage of City class

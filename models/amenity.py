@@ -6,6 +6,7 @@ Amenity class module for AirBnB clone
 from models.base_model import BaseModel
 from datetime import datetime
 
+
 class Amenity(BaseModel):
     """
     Beginning stage of Amenity class
