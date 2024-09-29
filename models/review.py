@@ -6,6 +6,7 @@ Review class module for AirBnB clone
 from models.base_model import BaseModel
 from datetime import datetime
 
+
 class Review(BaseModel):
     """
     Beginning stage of Review class
