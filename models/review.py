@@ -15,12 +15,13 @@ class Review(BaseModel):
         user_id (str):    user id
         text (str):       review text
     """
-    def __init__(self, *args, **kwargs):
+    place_id = ""
+    user_id = ""
+    text = ""
+
+    def __init__(self, **kwargs):
         if not kwargs:
             super().__init__()
-            self.place_id = ""
-            self.user_id = ""
-            self.text = ""
         else:
             for key, value in kwargs.items():
                 if key == 'id':
