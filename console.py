@@ -62,12 +62,6 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def help_quit(self):
-        print("Exits the program.")
-
-    def help_EOF(self):
-        print("Exits the program")
-
     def do_create(self, line):
         """
         Creates and saves a new BaseModel instance and prints the id
@@ -75,11 +69,11 @@ class HBNBCommand(cmd.Cmd):
         Usage: create <class name>
         """
         if line.strip():
-            if line == 'BaseModel':
-                new_model = BaseModel()
-                storage.new(new_model)
+            if line in HBNBCommand.__classes:
+                new_obj = HBNBCommand.__classes[line]()
+                storage.new(new_obj)
                 storage.save()
-                print(new_model.id)
+                print(new_obj.id)
             else:
                 print("** class doesn't exist **")
         else:
@@ -93,9 +87,9 @@ class HBNBCommand(cmd.Cmd):
         """
         if line.strip():
             line_splits = line.split()
-            if line_splits[0] == 'BaseModel':
+            if line_splits[0] in HBNBCommand.__classes:
                 if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    storage_id = '{}.{}'.format(line_splits[0], line_splits[1])
                     if storage_id in storage.all():
                         print(storage.all()[storage_id])
                     else:
@@ -139,10 +133,11 @@ class HBNBCommand(cmd.Cmd):
         Usage: all <class name>
         """
         if line.strip():
-            if line == 'BaseModel':
+            line_splits = line.split()
+            if line_splits[0] in HBNBCommand.__classes:
                 list_models = []
                 for key, value in storage.all().items():
-                    if key.split('.')[0] == 'BaseModel':
+                    if key.split('.')[0] == line_splits[0]:
                         list_models.append(str(value))
                 print(list_models)
             else:
@@ -153,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
                 list_models.append(str(value))
             print(list_models)
 
-    def do_update(self, line):  # might re-write with regex to handle double quotes
+    def do_update(self, line):
         """
         Updates an instance based on the class name and id
         by adding or updtting attribute and save the changes
@@ -163,14 +158,15 @@ class HBNBCommand(cmd.Cmd):
         if line.strip():
             line_splits = re.findall(r'\"(.*?)\"|(\S+)', line)
             line_splits = [elem for tup in line_splits for elem in tup if elem]
-            if line_splits[0] == 'BaseModel':
+            if line_splits[0] in HBNBCommand.__classes:
                 if len(line_splits) > 1:
-                    storage_id = 'BaseModel.{}'.format(line_splits[1])
+                    storage_id = '{}.{}'.format(line_splits[0], line_splits[1])
                     storage = models.storage.all()
                     if storage_id in storage:
                         if len(line_splits) > 2:
                             if len(line_splits) > 3:
-                                setattr(storage[storage_id], line_splits[2], line_splits[3])
+                                setattr(storage[storage_id], line_splits[2],
+                                        line_splits[3])
                                 storage[storage_id].save()
                             else:
                                 print('** value missing **')
@@ -184,6 +180,12 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
+    def help_quit(self):
+        print("Exits the program.")
+
+    def help_EOF(self):
+        print("Exits the program")
 
     def help_create(self):
         print('Creates and saves a new BaseModel instance and prints the id.')
