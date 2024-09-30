@@ -4,6 +4,7 @@ Unittest for BaseModel class
 """
 
 import unittest
+import os
 from models.place import Place
 from models.base_model import BaseModel
 
@@ -25,6 +26,8 @@ class TestPlace(unittest.TestCase):
         TearDown for Place class
         """
         del self.place
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_init(self):
         """

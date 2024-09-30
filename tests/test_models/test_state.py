@@ -4,6 +4,7 @@ Unittest for State class
 """
 
 import unittest
+import os
 from models.state import State
 from models.base_model import BaseModel
 
@@ -24,6 +25,8 @@ class TestState(unittest.TestCase):
         TearDown for State class
         """
         del self.state
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_init(self):
         """

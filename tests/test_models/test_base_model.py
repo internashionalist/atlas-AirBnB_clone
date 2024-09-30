@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import unittest
+import os
 from models.base_model import BaseModel
 import datetime
 
@@ -20,6 +21,8 @@ class BaseModelTests(unittest.TestCase):
         Clean up for the unittests
         """
         del self.model
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_save(self):
         """
