@@ -2,6 +2,7 @@
 
 import unittest
 from models.base_model import BaseModel
+import datetime
 
 
 class BaseModelTests(unittest.TestCase):
@@ -46,11 +47,12 @@ class BaseModelTests(unittest.TestCase):
         """
         test_model = BaseModel()
         test_model.id = '1'  # mock id for testing
-        test_model.created_at = '2024'
-        test_model.updated_at = '2024'
+        test_model.created_at = datetime.datetime(2024, 9, 28, 12, 0, 0)  # mock datetime
+        test_model.updated_at = datetime.datetime(2024, 9, 28, 12, 0, 0)  # mock datetime
         actual_result = str(test_model)
-        expected_result = "[BaseModel] (1) {'id': '1', 'created_at': '2024', 'updated_at': '2024'}"
+        expected_result = "[BaseModel] (1) {'id': '1', 'created_at': datetime.datetime(2024, 9, 28, 12, 0), 'updated_at': datetime.datetime(2024, 9, 28, 12, 0)}"
         self.assertEqual(actual_result, expected_result)
+        del(test_model)
 
 # my_model = BaseModel()
 # my_model.name = "My First Model"
