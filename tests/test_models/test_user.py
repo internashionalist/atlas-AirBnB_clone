@@ -48,29 +48,29 @@ class TestUser(unittest.TestCase):
         """
         Test for email input
         """
-        self.user.email = "jackflash@email.com"
-        self.assertEqual(self.user.email, "jackflash@email.com")
+        self.user.email = "jackflashTEST@email.com"
+        self.assertEqual(self.user.email, "jackflashTEST@email.com")
 
     def test_password(self):
         """
         Test for password input
         """
-        self.user.password = "password"
-        self.assertEqual(self.user.password, "password")
+        self.user.password = "password 2"
+        self.assertEqual(self.user.password, "password 2")
 
     def test_first_name(self):
         """
         Test for first_name input
         """
-        self.user.first_name = "Jack"
-        self.assertEqual(self.user.first_name, "Jack")
+        self.user.first_name = "Jackz"
+        self.assertEqual(self.user.first_name, "Jackz")
 
     def test_last_name(self):
         """
         Test for last_name input
         """
-        self.user.last_name = "Flash"
-        self.assertEqual(self.user.last_name, "Flash")
+        self.user.last_name = "Flashes"
+        self.assertEqual(self.user.last_name, "Flashes")
 
     def test_to_dict(self):
         """
