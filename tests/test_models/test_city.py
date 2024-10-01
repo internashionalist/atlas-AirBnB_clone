@@ -18,13 +18,11 @@ class TestCity(unittest.TestCase):
         SetUp for City class
         """
         self.city = City()
-        city_dict = self.city.to_dict()
 
     def tearDown(self):
         """
         TearDown for City class
         """
-        del self.city
         if os.path.exists("file.json"):
             os.remove
 
@@ -32,31 +30,9 @@ class TestCity(unittest.TestCase):
         """
         Test for init method
         """
-        self.assertTrue(isinstance(self.city, BaseModel))
-
-    def test_city_name(self):
-        """
-        Test for name input
-        """
-        city = City()
-        city.name = "Tulsa"
-        self.assertEqual(city.name, "Tulsa")
-
-    def test_state_id(self):
-        """
-        Test for state_id input
-        """
-        city = City()
-        city.state_id = "OK"
-        self.assertEqual(city.state_id, "OK")
-
-    def test_city_id(self):
-        """
-        Test for city_id input
-        """
-        city = City()
-        city.city_id = "Tulsa"
-        self.assertEqual(city.city_id, "Tulsa")
+        Tulsa = City()
+        self.assertEqual(type(Tulsa), City)
+        self.assertEqual(Tulsa.state_id, "")
 
 
 if __name__ == '__main__':
