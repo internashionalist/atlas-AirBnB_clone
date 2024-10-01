@@ -130,14 +130,19 @@ class HBNBCommand(cmd.Cmd):
         Prints string representation of all instances in storage
         or of all of a specific class
 
-        Usage: all <class name>
+        Usage:  all <class name>
+                <class name>.all()
         """
-        if line.strip():
-            line_splits = line.split()
-            if line_splits[0] in HBNBCommand.__classes:
+        line_splits = line.strip().split()
+        if line_splits:
+            class_name = line_splits[0]
+        else:
+            class_name = line
+        if class_name:
+            if class_name in HBNBCommand.__classes:
                 list_models = []
                 for key, value in storage.all().items():
-                    if key.split('.')[0] == line_splits[0]:
+                    if key.split('.')[0] == class_name:
                         list_models.append(str(value))
                 print(list_models)
             else:
@@ -180,6 +185,23 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
+    def default(self, line):
+        """
+        Handles prefixed commands
+        """
+        if line.endswith('.all()'):
+            class_name = line.split('.')[0]
+            if class_name in HBNBCommand.__classes:
+                list_models = []
+                for key, value in storage.all().items():
+                    if key.split('.')[0] == class_name:
+                        list_models.append(str(value))
+                print(list_models)
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("*** Unknown syntax: {}".format(line))
 
     def help_quit(self):
         print("Exits the program.")
