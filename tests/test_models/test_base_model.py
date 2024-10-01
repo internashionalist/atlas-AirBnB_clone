@@ -3,6 +3,7 @@
 import unittest
 import os
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 import datetime
 
 
@@ -15,6 +16,7 @@ class BaseModelTests(unittest.TestCase):
         Setup for the unittests
         """
         self.model = BaseModel()
+        self.storage = FileStorage()
 
     def tearDown(self):
         """
@@ -28,10 +30,9 @@ class BaseModelTests(unittest.TestCase):
         """
         Test the save method
         """
-        test_model = BaseModel()
-        test_model.save()
-        self.assertNotEqual(test_model.created_at,
-                            test_model.updated_at)
+        self.model.save()
+        self.assertTrue(os.path.exists("file.json"))
+        self.assertNotEqual(self.model.updated_at, self.model.created_at)
 
     def test_to_dict(self):
         """
