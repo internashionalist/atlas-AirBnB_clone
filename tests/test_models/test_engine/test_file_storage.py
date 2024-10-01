@@ -8,6 +8,7 @@ import os
 import json
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class TestFileStorage(unittest.TestCase):
@@ -35,9 +36,17 @@ class TestFileStorage(unittest.TestCase):
         """
         Test for __objects attribute
         """
-        object = BaseModel()
+        object = BaseModel(id='1',
+                           updated_at=datetime(2024, 9, 28, 12, 0, 0),
+                           created_at=datetime(2024, 9, 28, 12, 0, 0))
         self.storage.new(object)
+        stored_obj = self.storage.all()[f'BaseModel.{object.id}']
         self.assertIn(f"BaseModel.{object.id}", self.storage.all())
+        self.assertEqual(stored_obj.id, '1')
+        self.assertEqual(stored_obj.created_at,
+                         datetime(2024, 9, 28, 12, 0, 0))
+        self.assertEqual(stored_obj.updated_at,
+                         datetime(2024, 9, 28, 12, 0, 0))
 
     def test_init(self):
         """
