@@ -34,21 +34,21 @@ class BaseModel:
         else:
             for key, value in kwargs.items():
                 if key == 'created_at':
-                    created_text = kwargs.get('created_at')
-                    formated_text = datetime.strptime(
-                        created_text, '%Y-%m-%dT%H:%M:%S.%f')
-                    self.created_at = formated_text
-                    # if isinstance(value, str):
-                    #     value = datetime.fromisoformat(value)
-                    # self.created_at = value
+                    # created_text = kwargs.get('created_at')
+                    # formated_text = datetime.strptime(
+                    #     created_text, '%Y-%m-%dT%H:%M:%S.%f')
+                    # self.created_at = formated_text
+                    if isinstance(value, str):
+                        value = datetime.fromisoformat(value)
+                    self.created_at = value
                 elif key == 'updated_at':
-                    updated_text = kwargs.get('updated_at')
-                    formated_text = datetime.strptime(
-                        updated_text, '%Y-%m-%dT%H:%M:%S.%f')
-                    self.updated_at = formated_text
-                    # if isinstance(value, str):
-                    #     value = datetime.fromisoformat(value)
-                    # self.updated_at = value
+                    # updated_text = kwargs.get('updated_at')
+                    # formated_text = datetime.strptime(
+                    #     updated_text, '%Y-%m-%dT%H:%M:%S.%f')
+                    # self.updated_at = formated_text
+                    if isinstance(value, str):
+                        value = datetime.fromisoformat(value)
+                    self.updated_at = value
                 elif key != '__class__':
                     setattr(self, key, value)
 
@@ -58,8 +58,6 @@ class BaseModel:
         """
         return '[{}] ({}) {}'.format(
             self.__class__.__name__, self.id, self.__dict__)
-        # instructions say PRINT, but isn't __str__
-        # supposed to return a string?
 
     def save(self):
         """
