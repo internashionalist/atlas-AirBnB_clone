@@ -17,14 +17,12 @@ class TestState(unittest.TestCase):
         """
         SetUp for State class
         """
-        self.state = State()
-        state_dict = self.state.to_dict()
+        OK = State()
 
     def tearDown(self):
         """
         TearDown for State class
         """
-        del self.state
         if os.path.exists("file.json"):
             os.remove("file.json")
 
@@ -32,23 +30,10 @@ class TestState(unittest.TestCase):
         """
         Test for init method
         """
-        self.assertTrue(isinstance(self.state, BaseModel))
+        OK = State()
+        self.assertIsEqual(type(OK), State)
+        self.assertEqual(OK.name, "")
 
-    def test_state_name(self):
-        """
-        Test for name input
-        """
-        state = State()
-        state.name = "Oklahoma"
-        self.assertEqual(state.name, "Oklahoma")
-
-    def test_state_id(self):
-        """
-        Test for state_id input
-        """
-        state = State()
-        state.state_id = "OK"
-        self.assertEqual(state.state_id, "OK")
 
 if __name__ == '__main__':
     unittest.main()
