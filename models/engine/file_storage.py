@@ -4,7 +4,7 @@ FileStorage class module for AirBnB clone
 """
 
 import json
-import os.path
+import os
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -55,7 +55,7 @@ class FileStorage:
         Attributes:
             obj (BaseModel):  object to set in __objects
         """
-        self.__objects[obj.__class__.__name__ + "." + obj.id] = obj
+        self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """

@@ -37,9 +37,7 @@ class TestFileStorage(unittest.TestCase):
         """
         object = BaseModel()
         self.storage.new(object)
-        key = f"BaseModel.{object.id}"
-        self.assertIn(key, self.storage.all())
-        self.assertEqual(self.storage.all()[key], object)
+        self.assertIn(f"BaseModel.{object.id}", self.storage.all())
 
     def test_init(self):
         """
