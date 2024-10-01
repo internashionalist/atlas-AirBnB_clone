@@ -32,7 +32,7 @@ class TestPlace(unittest.TestCase):
         Test for init method
         """
         Loft = Place()
-        self.assertIsEqual(type(Loft), Place)
+        self.assertEqual(type(Loft), Place)
         self.assertEqual(Loft.city_id, "")
         self.assertEqual(Loft.user_id, "")
         self.assertEqual(Loft.name, "")

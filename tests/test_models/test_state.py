@@ -31,7 +31,7 @@ class TestState(unittest.TestCase):
         Test for init method
         """
         OK = State()
-        self.assertIsEqual(type(OK), State)
+        self.assertEqual(type(OK), State)
         self.assertEqual(OK.name, "")
 
 
