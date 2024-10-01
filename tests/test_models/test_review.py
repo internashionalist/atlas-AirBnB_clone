@@ -4,6 +4,7 @@ Unittest for Review class
 """
 
 import unittest
+import os
 from models.review import Review
 from models.base_model import BaseModel
 
@@ -16,20 +17,22 @@ class TestReview(unittest.TestCase):
         """
         SetUp for Review class
         """
-        self.review = Review()
+        review = Review()
         review_dict = self.review.to_dict()
 
     def tearDown(self):
         """
         TearDown for Review class
         """
-        del self.review
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_init(self):
         """
         Test for init method
         """
-        self.assertTrue(isinstance(self.review, BaseModel))
+        review = Review()
+        self.assertIsEqual(type(review), Review)
 
     def test_place_id(self):
         """
