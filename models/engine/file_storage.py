@@ -55,6 +55,8 @@ class FileStorage:
         Attributes:
             obj (BaseModel):  object to set in __objects
         """
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        FileStorage.__objects[key] = obj
         self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
