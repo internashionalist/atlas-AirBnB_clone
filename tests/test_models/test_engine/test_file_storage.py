@@ -40,7 +40,6 @@ class TestFileStorage(unittest.TestCase):
                            updated_at=datetime(2024, 9, 28, 12, 0, 0),
                            created_at=datetime(2024, 9, 28, 12, 0, 0))
         self.storage.new(object)
-        key = f"BaseModel.{object.id}"
         objects = self.storage._FileStorage__objects  # tests __objects
 
         stored_obj = self.storage.all()[f'BaseModel.{object.id}']
@@ -50,7 +49,6 @@ class TestFileStorage(unittest.TestCase):
                          datetime(2024, 9, 28, 12, 0, 0))
         self.assertEqual(stored_obj.updated_at,
                          datetime(2024, 9, 28, 12, 0, 0))
-        self.assertIn(key, objects)
 
     def test_init(self):
         """
@@ -68,9 +66,10 @@ class TestFileStorage(unittest.TestCase):
         """
         Test for new method
         """
-        storage = FileStorage()
-        storage.new(BaseModel())
-        self.assertTrue(isinstance(storage.all(), dict))
+        obj = BaseModel()
+        self.storage.new(obj)
+        key = f"BaseModel.{obj.id}"
+        self.assertIn(key, self.storage.all())
 
     def test_save(self):
         """
