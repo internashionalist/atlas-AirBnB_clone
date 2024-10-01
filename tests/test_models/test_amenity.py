@@ -32,7 +32,7 @@ class TestAmenity(unittest.TestCase):
         Test for init method
         """
         Fireplace = Amenity()
-        self.assertIsEqual(type(Fireplace), Amenity)
+        self.assertEqual(type(Fireplace), Amenity)
         self.assertEqual(Fireplace.name, "")
 
 

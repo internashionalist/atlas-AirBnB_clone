@@ -40,8 +40,8 @@ class TestFileStorage(unittest.TestCase):
                            updated_at=datetime(2024, 9, 28, 12, 0, 0),
                            created_at=datetime(2024, 9, 28, 12, 0, 0))
         self.storage.new(object)
-        objects = self.storage._FileStorage__objects
-        # stored_obj = self.storage.all()[f'BaseModel.{object.id}']
+        objects = self.storage._FileStorage__objects  # tests __objects
+
         stored_obj = self.storage.all()[f'BaseModel.{object.id}']
         self.assertIn(f"BaseModel.{object.id}", objects)
         self.assertEqual(stored_obj.id, '1')

@@ -18,7 +18,7 @@ class TestReview(unittest.TestCase):
         SetUp for Review class
         """
         review = Review()
-        review_dict = self.review.to_dict()
+        review_dict = review.to_dict()
 
     def tearDown(self):
         """
@@ -32,7 +32,7 @@ class TestReview(unittest.TestCase):
         Test for init method
         """
         review = Review()
-        self.assertIsEqual(type(review), Review)
+        self.assertEqual(type(review), Review)
 
     def test_place_id(self):
         """
