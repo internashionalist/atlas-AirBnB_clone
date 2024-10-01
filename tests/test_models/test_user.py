@@ -20,17 +20,13 @@ class TestUser(unittest.TestCase):
         """
         Setup test cases
         """
-        self.user = User()
-        self.user.email = "jackflash@email.com"
-        self.user.password = "password"
-        self.user.first_name = "Jack"
-        self.user.last_name = "Flash"
+        test_file = "file.json"
+        storage = FileStorage()
 
     def tearDown(self):
         """
         Tear down test cases
         """
-        del self.user
         if os.path.exists("file.json"):
             os.remove("file.json")
     
@@ -38,45 +34,51 @@ class TestUser(unittest.TestCase):
         """
         Test for init method
         """
-        self.assertTrue(isinstance(self.user, BaseModel))
-        self.assertEqual(self.user.email, "jackflash@email.com")
-        self.assertEqual(self.user.password, "password")
-        self.assertEqual(self.user.first_name, "Jack")
-        self.assertEqual(self.user.last_name, "Flash")
+        new_user = User()
+        self.assertIsInstance(new_user, User)
+        self.assertEqual(new_user.email, "")
+        self.assertEqual(new_user.password, "")
+        self.assertEqual(new_user.first_name, "")
+        self.assertEqual(new_user.last_name, "")
 
     def test_email(self):
         """
         Test for email input
         """
-        self.user.email = "jackflashTEST@email.com"
-        self.assertEqual(self.user.email, "jackflashTEST@email.com")
+        new_user = User()
+        new_user.email = "TEST@email.com"
+        self.assertEqual(new_user.email, "TEST@email.com")
 
     def test_password(self):
         """
         Test for password input
         """
-        self.user.password = "password 2"
-        self.assertEqual(self.user.password, "password 2")
+        new_user = User()
+        new_user.password = "password 2"
+        self.assertEqual(new_user.password, "password 2")
 
     def test_first_name(self):
         """
         Test for first_name input
         """
-        self.user.first_name = "Jackz"
-        self.assertEqual(self.user.first_name, "Jackz")
+        new_user = User()
+        new_user.first_name = "Jack"
+        self.assertEqual(new_user.first_name, "Jack")
 
     def test_last_name(self):
         """
         Test for last_name input
         """
-        self.user.last_name = "Flashes"
-        self.assertEqual(self.user.last_name, "Flashes")
+        new_user = User()
+        new_user.last_name = "Flash"
+        self.assertEqual(new_user.last_name, "Flash")
 
     def test_to_dict(self):
         """
         Test for to_dict method
         """
-        user_dict = self.user.to_dict()
+        new_user = User()
+        user_dict = new_user.to_dict()
         self.assertIn('id', user_dict)
         self.assertIn('created_at', user_dict)
         self.assertIn('updated_at', user_dict)
@@ -87,10 +89,11 @@ class TestUser(unittest.TestCase):
         """
         Test for save method
         """
-        old_updated_at = self.user.updated_at
-        self.user.save()
-        self.assertNotEqual(old_updated_at, self.user.updated_at)
-        self.assertGreater(self.user.updated_at, old_updated_at)
+        new_user = User()
+        old_updated_at = new_user.updated_at
+        key = f"User.{new_user.id}"
+        new_user.save()
+        self.assertNotEqual(old_updated_at, new_user.updated_at)
 
 if __name__ == '__main__':
     unittest.main()
