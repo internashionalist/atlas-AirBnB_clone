@@ -55,9 +55,8 @@ class FileStorage:
         Attributes:
             obj (BaseModel):  object to set in __objects
         """
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        FileStorage.__objects[key] = obj
-        self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
+        key = self.key_create(obj)  # create key
+        self.__objects[key] = obj  # set object in __objects
 
     def save(self):
         """
@@ -98,3 +97,15 @@ class FileStorage:
                     self.__objects[key] = classes[class_name](**value)  # creat
         except FileNotFoundError:  # if file not found
             pass  # do nothing
+
+    def key_create(self, obj):
+        """
+        Creates key for object
+
+        Attributes:
+            obj (BaseModel):  object to create key for
+
+        Returns:
+            str:  key for object
+        """
+        return type(obj).__name__ + "." + obj.id
