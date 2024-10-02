@@ -67,11 +67,11 @@ class TestFileStorage(unittest.TestCase):
         Test for new method
         """
         obj = BaseModel()
-        self.storage.new(obj)
         key = self.storage.key_create(obj)
+        self.assertNotIn(key, self.storage.all().keys())
+        self.storage.new(obj)
         objects = self.storage.all()
-        self.assertIn(key, objects)
-        self.assertEqual(objects[key], obj)
+        self.assertIn(key, objects.keys())
 
     def test_save(self):
         """
