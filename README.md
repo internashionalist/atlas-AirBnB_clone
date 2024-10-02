@@ -58,9 +58,14 @@ From this point, the user can input different commands to operate the console.
 
 The AirBnB Console uses an object-oriented approach to manage different classes:
 
-	•	BaseModel Class: This acts as the parent class for all other models, providing common attributes such as id, created_at, and updated_at. Every new model class inherits from BaseModel.
-	•	JSON Serialization: All instances are stored in a file called file.json using JSON format. This allows for data "persistence," so you can exit the console and later retrieve all previously created instances.
-	•	Interactive Command Handling: The console supports commands that allow users to:
+	•	*BaseModel Class*: This acts as the parent class for all other models, providing common attributes
+		such as id, created_at, and updated_at. Every new model class inherits from BaseModel.
+
+	•	*JSON Serialization*: All instances are stored in a file called file.json using JSON format.
+		This allows for data "persistence," so you can exit the console and later retrieve all
+		previously created instances.
+
+	•	*Interactive Command Handling*: The console supports commands that allow users to:
 	    +   Create new instances of models.
 	    +   Display specific instances or lists of instances.
 	    +   Update attributes of instances.
