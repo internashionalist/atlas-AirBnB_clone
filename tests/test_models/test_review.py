@@ -34,6 +34,12 @@ class TestReview(unittest.TestCase):
         review = Review()
         self.assertEqual(type(review), Review)
 
+    def test_init_kwargs(self):
+        review = Review(place_id='Floor', user_id='Bob', text='your uncle')
+        self.assertEqual(review.place_id, 'Floor')
+        self.assertEqual(review.user_id, 'Bob')
+        self.assertEqual(review.text, 'your uncle')
+
     def test_place_id(self):
         """
         Test for place_id input
@@ -76,7 +82,6 @@ class TestReview(unittest.TestCase):
         """
         new_review = Review()
         old_updated_at = new_review.updated_at
-        key = f"Review.{new_review.id}"
         new_review.save()
         self.assertNotEqual(old_updated_at, new_review.updated_at)
 
