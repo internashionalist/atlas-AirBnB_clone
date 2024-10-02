@@ -13,12 +13,12 @@ class TestReview(unittest.TestCase):
     """
     Test for Review class
     """
-    def setUp(self):
-        """
-        SetUp for Review class
-        """
-        review = Review()
-        review_dict = review.to_dict()
+    # def setUp(self):
+    #     """
+    #     SetUp for Review class
+    #     """
+    #     review = Review()
+    #     review_dict = review.to_dict()
 
     def tearDown(self):
         """
