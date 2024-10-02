@@ -33,6 +33,9 @@ class TestReview(unittest.TestCase):
         """
         review = Review()
         self.assertEqual(type(review), Review)
+        self.assertEqual(review.place_id, '')
+        self.assertEqual(review.user_id, '')
+        self.assertEqual(review.text, '')
 
     def test_init_kwargs(self):
         review = Review(place_id='Floor', user_id='Bob', text='your uncle')
