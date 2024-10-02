@@ -58,5 +58,27 @@ class TestReview(unittest.TestCase):
         review.text = "This place is a mansion!"
         self.assertEqual(review.text, "This place is a mansion!")
 
+    def test_to_dict(self):
+        """
+        Test for to_dict method
+        """
+        new_review = Review()
+        review_dict = new_review.to_dict()
+        self.assertIn('id', review_dict)
+        self.assertIn('created_at', review_dict)
+        self.assertIn('updated_at', review_dict)
+        self.assertIn('__class__', review_dict)
+        self.assertEqual(review_dict['__class__'], 'Review')
+
+    def test_save(self):
+        """
+        Test for save method
+        """
+        new_review = Review()
+        old_updated_at = new_review.updated_at
+        key = f"Review.{new_review.id}"
+        new_review.save()
+        self.assertNotEqual(old_updated_at, new_review.updated_at)
+
 if __name__ == '__main__':
     unittest.main()
