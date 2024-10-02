@@ -10,6 +10,7 @@
 [Description](#description)<br>
 [Use Instructions](#use-instructions)<br>
 [Features](#features)<br>
+[Examples](#examples)<br>
 [Authors](#authors)
 
 ## Synopsis
