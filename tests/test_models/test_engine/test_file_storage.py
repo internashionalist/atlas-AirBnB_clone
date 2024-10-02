@@ -44,6 +44,12 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(f"BaseModel.{object.id}", objects)
         self.assertEqual(stored_obj, object)
 
+    def test_empty_storage(self):
+        new_storage = FileStorage()
+        new_storage_dict = new_storage.all()
+        self.assertEqual(type(new_storage_dict), dict)
+        self.assertIs(new_storage_dict, new_storage._FileStorage__objects)
+
     def test_init(self):
         """
         Test for init method
