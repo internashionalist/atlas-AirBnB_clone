@@ -49,7 +49,7 @@ From this point, the user can input different commands to operate the console.
 | `create <ClassName>`                                      | Creates a new instance of the specified class and prints its ID.   |
 | `show <ClassName> <id>`                                   | Displays the string representation of an instance based on class and ID. |
 | `destroy <ClassName> <id>`                                | Deletes an instance based on class and ID.                         |
-| `all [ClassName]`                                         | Displays all instances of a given class, or all instances if no class is specified. |
+| `all <ClassName>`                                         | Displays all instances of a given class, or all instances if no class is specified. |
 | `<ClassName>.all()`										| Displays all instances of a given class							|
 | `update <ClassName> <id> <attribute name> "<attribute value>"` | Updates an instance's attribute and saves the change.             |
 
