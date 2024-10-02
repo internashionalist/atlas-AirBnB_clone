@@ -39,8 +39,8 @@ cd Atlas_AirBnB_clone
 ```
 ./console.py
 ```
-    Here, you'll see the command line prompt: (hbnb)
-    From this point, the user can input different commands to operate the console.
+Here, you'll see the command line prompt: (hbnb)
+From this point, the user can input different commands to operate the console.
 
 | Command                                                    | Description                                                        |
 |-----------------------------------------------------------|--------------------------------------------------------------------|
@@ -68,26 +68,29 @@ The AirBnB Console uses an object-oriented approach to manage different classes:
 ## Examples
 
 Create a new user:
-
-    ```
-    (hbnb) create User
-    ```
+```
+(hbnb) create User
+```
 
 Output: (new User ID)
-
-    23a5041c-8fe9-422f-83e2-22be9f0f0aa2
+```
+23a5041c-8fe9-422f-83e2-22be9f0f0aa2
+```
 
 Update new User's First Name:
-
-    update User 23a5041c-8fe9-422f-83e2-22be9f0f0aa2 first_name "John"
+```
+(hbnb) update User 23a5041c-8fe9-422f-83e2-22be9f0f0aa2 first_name "John"
+```
 
 Verify Change:
-
-    show User 23a5041c-8fe9-422f-83e2-22be9f0f0aa2
+```
+(hbnb) show User 23a5041c-8fe9-422f-83e2-22be9f0f0aa2
+```
 
 Output (User attributes)
-
-    [User] (23a5041c-8fe9-422f-83e2-22be9f0f0aa2) {'id': '23a5041c-8fe9-422f-83e2-22be9f0f0aa2', 'created_at': datetime.datetime(2024, 10, 1, 19, 6, 27, 738194), 'updated_at': datetime.datetime(2024, 10, 1, 19, 7, 20, 460239), 'first_name': 'John'}
+```
+[User] (23a5041c-8fe9-422f-83e2-22be9f0f0aa2) {'id': '23a5041c-8fe9-422f-83e2-22be9f0f0aa2', 'created_at': datetime.datetime(2024, 10, 1, 19, 6, 27, 738194), 'updated_at': datetime.datetime(2024, 10, 1, 19, 7, 20, 460239), 'first_name': 'John'}
+```
 
 ## Authors
 
