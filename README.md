@@ -75,27 +75,19 @@ Create a new user:
 
 Output: (new User ID)
 
-    ```
     23a5041c-8fe9-422f-83e2-22be9f0f0aa2
-    ```
 
 Update new User's First Name:
 
-    ```
     update User 23a5041c-8fe9-422f-83e2-22be9f0f0aa2 first_name "John"
-    ```
 
 Verify Change:
 
-    ```
     show User 23a5041c-8fe9-422f-83e2-22be9f0f0aa2
-    ```
 
 Output (User attributes)
 
-    ```
     [User] (23a5041c-8fe9-422f-83e2-22be9f0f0aa2) {'id': '23a5041c-8fe9-422f-83e2-22be9f0f0aa2', 'created_at': datetime.datetime(2024, 10, 1, 19, 6, 27, 738194), 'updated_at': datetime.datetime(2024, 10, 1, 19, 7, 20, 460239), 'first_name': 'John'}
-    ```
 
 ## Authors
 
