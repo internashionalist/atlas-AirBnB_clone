@@ -9,8 +9,7 @@ body {
 }
 
 .container {
-    max-width: 1000px;
-    margin: 30px auto 30px;
+    max-width: 100%;
+    margin: 30px auto 30px auto;
     text-align: center;
-    flex: 1 0 auto;
 }
