@@ -93,10 +93,19 @@ div:hover>.popover {
     grid-row-gap: 4px;
 }
 
-.locations:hover > .popover {
+.locations:hover>.popover {
     display: block;
 }
 
-.amenities:hover > .popover {
+.amenities:hover>.popover {
     display: block;
+}
+
+.locations li {
+    margin: 0 0 0 5%;
+    padding: 0.2em;
+}
+
+.amenities ul {
+    padding: 2 0 2 3;
 }
