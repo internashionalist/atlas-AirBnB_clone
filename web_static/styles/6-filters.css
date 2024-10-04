@@ -23,6 +23,7 @@
     right: 30px;
     top: 15%;
     position: absolute;
+    box-sizing: border-box;
 }
 
 .filters button:hover {
@@ -32,7 +33,7 @@
 .locations .amenities {
     height: 100%;
     width: 25%;
-    display: inline-block;
+    display: flex;
     top: 0%;
     justify-content: center;
     flex-direction: column;
@@ -44,13 +45,11 @@
 }
 
 .filters h3 {
-    top: 15%;
     font-weight: 600;
     margin: 2px 20px;
 }
 
 .filters h4 {
-    top: 15%;
     font-weight: 400;
     font-size: 14px;
     margin: 2px 20px;
@@ -94,10 +93,10 @@ div:hover>.popover {
     grid-row-gap: 4px;
 }
 
-.locations:hover>.popover {
+.locations:hover > .popover {
     display: block;
 }
 
-.amenities:hover>.popover {
+.amenities:hover > .popover {
     display: block;
 }
