@@ -87,3 +87,9 @@ article h2 {
 .user {
     margin: 10px auto;
 }
+
+.description {
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: left;
+}
