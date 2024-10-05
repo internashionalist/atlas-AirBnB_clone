@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     position: relative;
-    margin: 30px auto;
     padding: 0 30px;
 }
 
@@ -71,7 +70,6 @@
     border-radius: 4px;
     top: 100%;
     position: absolute;
-    left: 0;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
@@ -95,7 +93,7 @@ div:hover>.popover {
 }
 
 .popover li {
-    margin: 10px 0px 10px 0px;
+    margin: 10px;
     list-style: none;
     padding-left: 20px;
     display: block;
@@ -111,7 +109,7 @@ div:hover>.popover {
 }
 
 .locations li {
-    margin: 0 0 0 5%;
+    margin: 0;
     padding: 0.2em;
 }
 
