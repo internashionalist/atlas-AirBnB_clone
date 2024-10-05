@@ -86,10 +86,10 @@ article h2 {
 
 .user {
     margin: 10px auto;
+    text-align: left;
 }
 
 .description {
-    font-size: 16px;
     margin: 10px 0;
     text-align: left;
 }
