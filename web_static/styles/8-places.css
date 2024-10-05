@@ -55,6 +55,7 @@ article h2 {
     border-bottom: 1px solid #DDDDDD;
     display: flex;
     justify-content: center;
+    align-items: left;
 }
 
 
@@ -86,14 +87,3 @@ article h2 {
 .user {
     margin: 10px auto;
 }
-
-/*
-justify-content
-align-items
-flex-direction
-order
-align-self
-flex-wrap
-flex-flow
-align-content
-*/
