@@ -70,6 +70,7 @@
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     top: 100%;
+    left: 0;
     position: absolute;
     width: 100%;
     box-sizing: border-box;
@@ -87,7 +88,7 @@ div:hover > .popover {
 
 .popover ul {
     list-style-type: none;
-    padding: 1em 0 1em 0;
+
 }
 
 .popover h2 {
@@ -108,4 +109,5 @@ div:hover > .popover {
 
 .amenities:hover>.popover {
     display: block;
+    padding-left: 50px;
 }

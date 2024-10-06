@@ -26,7 +26,7 @@ article {
     flex-wrap: wrap;
 }
 
-article h2 {
+.places article h2 {
     font-size: 30px;
     display: flex;
     text-align: center;
