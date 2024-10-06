@@ -34,7 +34,6 @@
     height: 100%;
     width: 25%;
     display: flex;
-    top: 0%;
     justify-content: center;
     flex-direction: column;
     align-items: left;
@@ -69,25 +68,24 @@
     background-color: #FAFAFA;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    top: 100%;
+    top: 70px;
     position: absolute;
-    left: 0;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    padding: 10px;
+    padding: 20px;
     list-style: none;
 
 }
 
-div:hover>.popover {
+div:hover > .popover {
     display: block;
     cursor: pointer;
 }
 
 .popover ul {
     list-style-type: none;
-    padding: 0.5em 0 1em 1em;
+    padding: 1em 0 1em 0;
 }
 
 .popover h2 {
@@ -95,9 +93,9 @@ div:hover>.popover {
 }
 
 .popover li {
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0;
     list-style: none;
-    padding-left: 20px;
+    text-align: center;
     display: block;
     grid-row-gap: 4px;
 }
@@ -108,13 +106,4 @@ div:hover>.popover {
 
 .amenities:hover>.popover {
     display: block;
-}
-
-.locations li {
-    margin: 10px;
-    padding: 0.2em;
-}
-
-.amenities ul {
-    padding: 2 0 2 3;
 }
