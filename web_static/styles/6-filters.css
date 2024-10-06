@@ -69,13 +69,14 @@
     background-color: #FAFAFA;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    top: 70px;
+    top: 100%;
     position: absolute;
     width: 100%;
     box-sizing: border-box;
     margin: 0;
     padding: 20px;
     list-style: none;
+    text-align: left;
 
 }
 
@@ -96,7 +97,7 @@ div:hover > .popover {
 .popover li {
     margin: 10px 0;
     list-style: none;
-    text-align: center;
+    text-align: left;
     display: block;
     grid-row-gap: 4px;
 }
