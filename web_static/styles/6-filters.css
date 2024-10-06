@@ -39,8 +39,6 @@
     align-items: left;
     position: relative;
     left: -30px;
-    
-
 }
 
 .filters .locations {
@@ -86,12 +84,10 @@
 
 div:hover > .popover {
     display: block;
-    cursor: pointer;
 }
 
 .popover ul {
     list-style-type: none;
-
 }
 
 .popover h2 {
@@ -106,8 +102,8 @@ div:hover > .popover {
     grid-row-gap: 4px;
 }
 
-.locations:hover>.popover,
-.amenities:hover>.popover {
+.locations:hover > .popover,
+.amenities:hover > .popover {
     display: block;
     padding-left: 30px;
 }
