@@ -48,6 +48,7 @@
     align-items: left;
     position: relative;
     border-right: 1px solid #DDDDDD;
+    margin-left: -30px;
 }
 
 .filters h3 {
