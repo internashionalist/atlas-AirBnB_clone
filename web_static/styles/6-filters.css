@@ -38,6 +38,7 @@
     flex-direction: column;
     align-items: left;
     position: relative;
+    padding-left: 30px;
 }
 
 .filters .locations {
