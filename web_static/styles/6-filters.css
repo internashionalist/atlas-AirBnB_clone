@@ -29,7 +29,8 @@
     cursor: pointer;
 }
 
-.filters .amenities {
+.filters .amenities,
+.filters .locations {
     height: 100%;
     width: 25%;
     display: flex;
@@ -39,12 +40,6 @@
 }
 
 .filters .locations {
-    height: 100%;
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
     border-right: 1px solid #DDDDDD;
     margin-left: -30px;
 }
