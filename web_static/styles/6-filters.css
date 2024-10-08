@@ -78,7 +78,7 @@
 }
 
 .popover ul {
-    list-style-type: none;
+    list-style: none;
 }
 
 .popover h2 {
@@ -90,7 +90,8 @@
     list-style-type: none;
     text-align: left;
     display: block;
-    grid-row-gap: 4px;
+    row-gap: 4px;
+    padding-left: 20px;
 }
 
 .locations:hover > .popover,
