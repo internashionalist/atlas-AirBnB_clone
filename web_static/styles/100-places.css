@@ -125,6 +125,10 @@
     list-style-type: none;
 }
 
+.places .amenities li {
+    margin: 10px 0;
+}
+
 .places_amenities_petfriendly {
     background-image: url(../images/icon_pets.png);
 }
