@@ -71,12 +71,6 @@
 
 }
 
-.amenities:hover > .popover,
-.locations:hover > .popover {
-    display: block;
-    cursor: pointer;
-}
-
 .popover ul {
     list-style: none;
 }
@@ -96,6 +90,10 @@
 
 .popover li ul{
     padding-left: 10%;
+}
+
+.amenities .popover li {
+    padding-left: 20px;
 }
 
 .locations:hover > .popover,
