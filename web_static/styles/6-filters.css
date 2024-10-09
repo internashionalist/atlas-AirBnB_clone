@@ -91,6 +91,11 @@
     text-align: left;
     display: block;
     row-gap: 4px;
+
+}
+
+.popover li ul{
+    padding-left: 10%;
 }
 
 .locations:hover > .popover,
